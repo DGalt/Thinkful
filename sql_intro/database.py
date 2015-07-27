@@ -62,15 +62,19 @@ with con:
     cols = [desc[0] for desc in cur.description]
     df = pd.DataFrame(rows, columns=cols)
 
-    #get list of cities. unclear if supposed to indexing into pandas df to
-    #achieve this. This seemed like a simplier way to do it. 
-    cur.execute('''SELECT name, state
-                FROM cities 
-                INNER JOIN weather 
-                ON name = city
-                WHERE warm_month = "{}"'''.format(user_month))
-    warmest = cur.fetchall()
+    #index into df to get city, state pairs 
+    warmest = zip(df["name"], df["state"])
 
+    #this is how I originally did it, without using the df. Thought of using
+    #zip later on
+    # cur.execute('''SELECT name, state
+    #             FROM cities 
+    #             INNER JOIN weather 
+    #             ON name = city
+    #             WHERE warm_month = "{}"'''.format(user_month))
+    #warmest = cur.fetchall()
+   
+    
     #output to user. kind of ugly
     if len(warmest) == 1:
         print("The city that is warmest in {} is: ".format(user_month) +
