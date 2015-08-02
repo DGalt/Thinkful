@@ -3,7 +3,7 @@ import scipy.stats as stats
 import collections
 
 #not sure if this is the correct data to be using
-#"data in this less" from Challenge is not clear
+#"data in this lesson" from Challenge is not clear
 data = [1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 3, 4, 4, 4, 4, 5, 6,
         6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 8, 8, 9, 9]
 
