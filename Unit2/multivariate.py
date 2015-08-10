@@ -39,15 +39,12 @@ print f.summary()
 
 #gives counts of different values - want to see what possible values are in
 #the home_ownership category
-#print loansData["home_ownership"].value_counts()
+print loansData["home_ownership"].value_counts()
 
-# for x, y in zip(loansData["home_ownership"][0:20].values,
-#                 pd.Categorical(loansData["home_ownership"]).codes[0:20]):
-#     print x, y
-
-#convert categorical home ownership values to numeric values
+#convert categorical home ownership values to numeric values (dummy values?)
 loansData["home_own_num"] = pd.Categorical(loansData["home_ownership"]).codes
 #print loansData["home_own_num"].head()
+#print loansData["home_own_num"].value_counts()
 
 x2 = np.matrix(loansData["home_own_num"]).transpose()
 
