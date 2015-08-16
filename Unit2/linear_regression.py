@@ -1,4 +1,4 @@
-import pandas as pd
+xbimport pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 import statsmodels.api as sm
@@ -37,7 +37,7 @@ x = np.column_stack([x1, x2])
 
 #create linear model
 X = sm.add_constant(x)
-model = sm.OLS(y, x)
+model = sm.OLS(y, X)
 f = model.fit()
 
 #results summary:

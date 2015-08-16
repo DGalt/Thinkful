@@ -5,6 +5,7 @@ import statsmodels.api as sm
 import statsmodels.formula.api as smf
 
 #load data - first row is some annotation info, so have to skip it
+#using 2013-2014 Loan Data
 loansData = pd.read_csv('LoanStats3c.csv', skiprows=[0])
 
 #remove rows with na - should I be doing this? 
@@ -39,7 +40,7 @@ print f.summary()
 
 #gives counts of different values - want to see what possible values are in
 #the home_ownership category
-print loansData["home_ownership"].value_counts()
+#print loansData["home_ownership"].value_counts()
 
 #convert categorical home ownership values to numeric values (dummy values?)
 loansData["home_own_num"] = pd.Categorical(loansData["home_ownership"]).codes
