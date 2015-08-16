@@ -13,7 +13,7 @@ cur = con.cursor()
 
 #create reference table
 with con:
-    cur.execute("DROP TABLE IF EXISTS citibike_reference")
+    #cur.execute("DROP TABLE IF EXISTS citibike_reference")
     cur.execute('''CREATE TABLE citibike_reference
     (id INT PRIMARY KEY,
     totalDocks INT,
@@ -65,7 +65,7 @@ station_ids = ['_' + str(x) + ' INT' for x in station_ids]
 #in this case, we're concatentating the string and joining all the station ids
 #(now with '_' and 'INT' added)
 with con:
-    cur.execute("DROP TABLE IF EXISTS available_bikes")
+    #cur.execute("DROP TABLE IF EXISTS available_bikes")
     cur.execute("CREATE TABLE available_bikes ( execution_time INT, " +
                 ", ".join(station_ids) + ");")
 
@@ -96,7 +96,7 @@ def _add_available(r=r, con=con, cur=cur):
             cur.execute("UPDATE available_bikes SET _" + str(k) + " = " +
                         str(v) + " WHERE execution_time = " +
                         exec_time.strftime('%s') + ";")
-
+        
 #initial call to _add_available will add values for first time point, which is
 #also when we generate the reference table
 _add_available()
@@ -106,7 +106,8 @@ time.sleep(60)
 
 #want to repeat adding values for available bikes 59 more times, for 1hr total
 for i in range(59):
-    r = requests.get('http://www.citibikenyc.com/stations/json')
-    _add_available()
-    time.sleep(60)
+     new_r = requests.get('http://www.citibikenyc.com/stations/json')
+     _add_available(r=new_r)
+     time.sleep(60)
 
+con.close()
