@@ -1,2 +1,2 @@
-print("Hello world, my name is Dan")
-print("Goodbye world")
+print("Hello world, I'm now becoming a Git Ninja")
+

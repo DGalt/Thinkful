@@ -16,3 +16,4 @@ chi, p = stats.chisquare(freq.values())
 
 print("Chi-squared value of {} with a p value of {}".format(chi, p))
 
+
